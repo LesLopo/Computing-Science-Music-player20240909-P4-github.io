@@ -12,18 +12,18 @@ AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
 int appWidth, appHeight;
-float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight
+float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
 //
 void setup()
 {
-  size(400, 800);
+  size(900,800);
   appWidth = width;
   appHeight = height;
   //Variables for any music button
-  musicButtonX = ;
-  musicButtonY = ;
   musicButtonWidth = appWidth*1/2;
   musicButtonHeight = appHeight*1/2;
+  musicButtonX = musicButtonWidth - appWidth*1/2;
+  musicButtonY = musicButtonHeight - appHeight*1/2;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
