@@ -11,9 +11,19 @@ int numberOfSongs = 8; //Able to Autodetect based on Pathway
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
+int appWidth, appHeight;
+float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight
+//
 void setup()
 {
-  size(700, 600);
+  size(400, 800);
+  appWidth = width;
+  appHeight = height;
+  //Variables for any music button
+  musicButtonX = ;
+  musicButtonY = ;
+  musicButtonWidth = appWidth*1/2;
+  musicButtonHeight = appHeight*1/2;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -31,35 +41,36 @@ void setup()
   String theSimplest = "The_Simplest";
   //
   //Add Reading into Array
-  String directory = "../../" + musicPathway;
-  println ( currentSong, directory );
+  String directory = "../../../" + musicPathway;
   String file = directory + groove + mp3FileName;
+  song[currentSong] = minim.loadFile( file );
+  file = directory + startYourEngines + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
+  file = directory + beatYourCompetition + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
+  file = directory + cycles + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
+  file = directory + eureka + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
+  file = directory + ghostWalk + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
+  file = directory + newsroom + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
+  file = directory + theSimplest + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
   //
-  song[currentSong] = minim.loadFile( "../../Music/groove.mp3" );
+  currentSong = 0;
   //
-  //song[currentSong+=1] = minim.loadFile( "../../Music/Start_Your_Engines.mp3" );
-  //song[1].play();
-  //song[currentSong+=1] = minim.loadFile( "../../Music/Beat_Your_Competition.mp3);
-  //song[currentSong+=1] = minim.loadFile( "../../Music/Cycles.mp3 );
-  //song[currentSong+=1] = minim.loadFile( "../../Music/Eureka.mp3 );
-  //song[currentSong+=1] = minim.loadFile( "../../Music/ghostWalk.mp3 );
-  //song[currentSong+=1] = minim.loadFile( "../../Music/Newsroom.mp3 );
-  //song[currentSong+=1] = minim.loadFile( "../../Music/The_Simplest.mp3 );
-
-  
-  //Add currentSong as hardcoded link
+  song[currentSong].play();
   //Use play(timeStart) & loop(numberOfLoops)
-  //Inspect with println
   //Purpose is 2D Shapes
   //Introduce keyPressed as keyboard shortcuts
   //Introduce mousePressed as interaction
   //
-  //Future Problem Fixed
-  //beatYourCompetition.play();
-  //
   //DIVs
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
-  
+  //rect( X, Y, Width, Height );
+  //rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
 } //End setup
 //
 void draw() {
