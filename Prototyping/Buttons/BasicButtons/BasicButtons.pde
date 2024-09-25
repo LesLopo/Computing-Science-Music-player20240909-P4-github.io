@@ -14,6 +14,7 @@ int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZE
 //
 int appWidth, appHeight;
 float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
+float stopX, StopY, StopWidth, stopHeight
 //
 void setup()
 {
@@ -25,15 +26,22 @@ void setup()
   musicButtonHeight = appHeight*1/2;
   musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
   musicButtonY = musicButtonHeight - musicButtonHeight*1/2;
-  if ( musicButtonWidth >= musicButtonHeight ) {
+  if ( musicButtonWidth >= musicButtonHeight ) { //error: square does not go in the middle 
     //musicButtonWidth needs to change
     musicButtonWidth = musicButtonHeight;
   } else {
     //musicButtonHeight needs to change
     musicButtonHeight = musicButtonWidth;
   }
-  //Note: any music button is square
   //Use if statement to change, introduce ternary operator
+  //
+  //Population (Variables)
+  float padding = 1/4;
+  float stopButtonSize = 1-(1/4);
+  StopWidth = musicButtonWidth*3/4;
+  stopHeight = musicButtonHeight*3/4;
+  stopX - musicButtonX;
+  StopY = musicButtonY;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -84,6 +92,10 @@ void setup()
 } //End setup
 //
 void draw() {
+  background(47813); //Gray Scale: 0-255
+  rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
+  //fill();
+  rect( stopX, StopY, StopWidth, stopHeight );
 } //End draw
 //
 void mousePressed() {
