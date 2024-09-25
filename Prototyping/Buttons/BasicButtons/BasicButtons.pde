@@ -1,3 +1,4 @@
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -16,14 +17,23 @@ float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
 //
 void setup()
 {
-  size(900,800);
+  size(900, 800);
   appWidth = width;
   appHeight = height;
   //Variables for any music button
   musicButtonWidth = appWidth*1/2;
   musicButtonHeight = appHeight*1/2;
-  musicButtonX = musicButtonWidth - appWidth*1/2;
-  musicButtonY = musicButtonHeight - appHeight*1/2;
+  musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
+  musicButtonY = musicButtonHeight - musicButtonHeight*1/2;
+  if ( musicButtonWidth >= musicButtonHeight ) {
+    //musicButtonWidth needs to change
+    musicButtonWidth = musicButtonHeight;
+  } else {
+    //musicButtonHeight needs to change
+    musicButtonHeight = musicButtonWidth;
+  }
+  //Note: any music button is square
+  //Use if statement to change, introduce ternary operator
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -70,7 +80,7 @@ void setup()
   //DIVs
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
   //rect( X, Y, Width, Height );
-  //rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
+  rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
 } //End setup
 //
 void draw() {
