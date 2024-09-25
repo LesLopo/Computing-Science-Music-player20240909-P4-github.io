@@ -16,7 +16,7 @@ int appWidth, appHeight;
 float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
 float stopX, StopY, StopWidth, stopHeight
 //
-void setup()
+void draw ()
 {
   size(900, 800);
   appWidth = width;
@@ -95,7 +95,7 @@ void draw() {
   background(47813); //Gray Scale: 0-255
   rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
   //fill();
-  rect( stopX, StopY, StopWidth, stopHeight );
+  rect( stopX, StopY, stopWidth, stopHeight );
 } //End draw
 //
 void mousePressed() {
