@@ -102,7 +102,7 @@ void draw() {
   //background(200); // Gray Scale: 0-255
   //rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   //fill();
-  //rect( stopX, stopY, stopWidth, stopHeight );
+  rect( stopX, stopY, stopWidth, stopHeight );
 } //End draw
 //
 void mousePressed() {
