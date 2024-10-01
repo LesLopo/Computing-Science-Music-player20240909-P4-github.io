@@ -1,4 +1,3 @@
-
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -13,9 +12,6 @@ AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
 int appWidth, appHeight;
-float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
-float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
-float stopX, stopY, stopWidth, stopHeight;
 //
 void setup()
 {
@@ -92,10 +88,7 @@ void setup()
   //Introduce keyPressed as keyboard shortcuts
   //Introduce mousePressed as interaction
   //
-  //DIVs
-  //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
-  //rect( X, Y, Width, Height );
-  rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
+  divs();
 } //End setup
 //
 void draw() {
