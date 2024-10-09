@@ -125,7 +125,7 @@ void mousePressed() {
 } //End mousePressed
 //
 void keyPressed() {
-  if ( key==? || key==?) ;
-} //End keyPressed
+  if ( key=='s' || key=='S' ) song[currentSong].pause();
+} //End KeyPressed
 //
 // End Main Program
