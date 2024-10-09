@@ -17,6 +17,8 @@ float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musi
 float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
 //
+color purple=#DB05FF, yellow=#FAFF00;
+//
 void setup()
 {
   size(1000, 800);
@@ -30,41 +32,41 @@ void setup()
   //Use if statement to change, introduce ternary operator
   //
   //Population (Variables)
-  //Work out a case Study: 
+  //Work out a case Study:
   if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { // Landscape //error: square does not go in the middle
-   // musicButtonWidth needs to change
-   musicButtonSquareWidth = musicButtonDIV_Height ;
-   musicButtonSquareHeight = musicButtonDIV_Height ;
-   float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
-   float padding2 = padding1*1/2; ////working out value needed, with formulae
-   musicButtonSquareX = musicButtonDIV_X + padding2 ; //note: minus moves it the wrong way, difficult to see
-   musicButtonSquareY = musicButtonDIV_Y;
-   println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
-   println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-   println ( padding1 );
-   } else { //Portrait
-   // musicButtonHeight needs to change
-   musicButtonSquareWidth = musicButtonDIV_Width ;
-   musicButtonSquareHeight = musicButtonDIV_Width;
-   float padding1 = musicButtonDIV_Height - musicButtonDIV_Width; //working out value needed, with formulae
-   float padding2 = padding1*1/2; ////working out value needed, with formulae
-   musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
-   musicButtonSquareY = musicButtonDIV_Y + padding2;
-   println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
-   println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-   println ( padding1 );
-   }
-   stopWidth = musicButtonSquareWidth*3/5;
-   stopHeight = stopWidth;
-   stopX = musicButtonSquareX + musicButtonSquareX*1/4;
-   stopY = musicButtonSquareY + musicButtonSquareY*2/5;
-   println( stopX, stopY, stopWidth, stopHeight );
-   //
-   /* Music Button Square Formulae for IF Statement Above
+    // musicButtonWidth needs to change
+    musicButtonSquareWidth = musicButtonDIV_Height ;
+    musicButtonSquareHeight = musicButtonDIV_Height ;
+    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
+    float padding2 = padding1*1/2; ////working out value needed, with formulae
+    musicButtonSquareX = musicButtonDIV_X + padding2 ; //note: minus moves it the wrong way, difficult to see
+    musicButtonSquareY = musicButtonDIV_Y;
+    println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
+    println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
+    println ( padding1 );
+  } else { //Portrait
+    // musicButtonHeight needs to change
+    musicButtonSquareWidth = musicButtonDIV_Width ;
+    musicButtonSquareHeight = musicButtonDIV_Width;
+    float padding1 = musicButtonDIV_Height - musicButtonDIV_Width; //working out value needed, with formulae
+    float padding2 = padding1*1/2; ////working out value needed, with formulae
+    musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
+    musicButtonSquareY = musicButtonDIV_Y + padding2;
+    println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
+    println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
+    println ( padding1 );
+  }
+  stopWidth = musicButtonSquareWidth*3/5;
+  stopHeight = stopWidth;
+  stopX = musicButtonSquareX + musicButtonSquareX*1/4;
+  stopY = musicButtonSquareY + musicButtonSquareY*2/5;
+  println( stopX, stopY, stopWidth, stopHeight );
+  //
+  /* Music Button Square Formulae for IF Statement Above
    // Use Paper Folding and Case Study
-  float padding = 1.0/5.0;
+   float padding = 1.0/5.0;
    float stopButtonSize = musicButtonSquareWidth*3/5;
-   stopWidth = stopButtonSize; 
+   stopWidth = stopButtonSize;
    stopHeight = stopButtonSize;
    stopX = musicButtonSquareX + musicButtonSquareX*padding;
    stopY = musicButtonSquareY + musicButtonSquareY*padding;
@@ -106,10 +108,15 @@ void setup()
 } //End setup
 //
 void draw() {
-  //background(200); // Gray Scale: 0-255
+  background(0); // Gray Scale: 0-255
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-  //fill();
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
+    fill(yellow); //Colour
+  } else {
+    fill(purple); //Colour
+  }
   rect( stopX, stopY, stopWidth, stopHeight );
+  fill(255); //noFill();
 } //End draw
 //
 void mousePressed() {
