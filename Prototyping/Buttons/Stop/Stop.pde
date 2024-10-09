@@ -18,6 +18,7 @@ float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
 //
 color purple=#DB05FF, yellow=#FAFF00;
+color stopButtonHoverOver;
 //
 void setup()
 {
@@ -111,10 +112,11 @@ void draw() {
   background(0); // Gray Scale: 0-255
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    fill(yellow); //Colour
+    stopButtonHoverOver = yellow;
   } else {
-    fill(purple); //Colour
+    stopButtonHoverOver = purple;
   }
+  fill(stopButtonHoverOver);
   rect( stopX, stopY, stopWidth, stopHeight );
   fill(255); //noFill();
 } //End draw
@@ -123,6 +125,7 @@ void mousePressed() {
 } //End mousePressed
 //
 void keyPressed() {
+  if ( key==? || key==?) ;
 } //End keyPressed
 //
 // End Main Program
