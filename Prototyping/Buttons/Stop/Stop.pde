@@ -117,15 +117,33 @@ void draw() {
     stopButtonHoverOver = purple;
   }
   fill(stopButtonHoverOver);
+  noStroke(); //Colour
   rect( stopX, stopY, stopWidth, stopHeight );
   fill(255); //noFill();
+  stroke(1); //Reset default
 } //End draw
 //
 void mousePressed() {
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause(); //single tap
+    } else {
+      song[currentSong].rewind(); //double tap
+    }
+  }
 } //End mousePressed
 //
 void keyPressed() {
-  if ( key=='s' || key=='S' ) song[currentSong].pause();
+  //if ( key=='P' || key=='p' ) song[currentSong].loop(); //Simple Play, no double tap possible
+  //if ( key=='P' || key=='p' ) song[currentSong].play(); //Simple Play, no double tap possible
+  //if ( key=='s' || key=='S' ) song[currentSong].pause(); //Simple Play, no double tap possible
+  if ( key=='S' | key=='s' ) {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause(); //single tap
+    } else {
+      song[currentSong].rewind(); //double tap
+    }
+  }
 } //End KeyPressed
 //
 // End Main Program
