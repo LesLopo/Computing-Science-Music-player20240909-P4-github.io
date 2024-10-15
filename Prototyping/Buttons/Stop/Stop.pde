@@ -17,14 +17,14 @@ float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musi
 float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
 //
-color purple=#DB05FF, yellow=#FAFF00, white=#FFFFFF, black=#000000, orange=#C61429, lightblue=#03CCFC; lightblue=#17D18E
-color dayForeground=purple, dayHoverover=lightblue, dayBackground=white;
+color purple=#DB05FF, yellow=#FAFF00, white=#FFFFFF, black=#000000, orange=#C61429, blue=#03CCFC, lightblue=#17D18E;
+color dayForeground=purple, dayHoverover=blue, dayBackground=white;
 color darkForeground=purple, darkHoverover=orange, darkBackground=black;
 color nightForeground=lightblue, nightHoverover=yellow, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 //
-Boolean colorDayMode=true, colorDarkMode=false, colorNightMode=false;
+Boolean colorNightMode=true;
 //
 void setup()
 {
@@ -114,20 +114,20 @@ void setup()
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
   //
   if ( hour()<=7 || hour ()>=17 ) {
-    //Night
-    appColorForeground= nightForeground;
-    appColorHoverover= nightHoverover;
-    appColorBackground= nightBackground;
-  } else if ( hour()>7 || hour ()<17 ) {
-    //Day
-    appColorForeground= dayForeground;
-    appColorHoverover= dayHoverover;
-    appColorBackground= dayBackground;
+    //Night Mode
+    appColorForeground = nightForeground;
+    appColorHoverover = nightHoverover;
+    appColorBackground = nightBackground;
+  } else if ( colorNightMode= false && hour()>7 || hour ()<17 ) {
+    //Day Mode
+    appColorForeground = dayForeground;
+    appColorHoverover = dayHoverover;
+    appColorBackground = dayBackground;
   } else {
     //Dark Mode 
-    appColorForeground= darkForeground;
-    appColorHoverover= darkHoverover;
-    appColorBackground= darkBackground;
+    appColorForeground = darkForeground;
+    appColorHoverover = darkHoverover;
+    appColorBackground = darkBackground;
   }
   //
 } //End setup
@@ -136,9 +136,9 @@ void draw() {
   background(0); // Gray Scale: 0-255
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    stopButtonHoverOver = appColorHoverover;
+    stopButtonHoverOver = appColorHoverover; // See SetUp;
   } else {
-    stopButtonHoverOver = appColorForeground;
+    stopButtonHoverOver = appColorForeground; // See SetUp;
   }
   fill(stopButtonHoverOver);
   noStroke(); //Colour
