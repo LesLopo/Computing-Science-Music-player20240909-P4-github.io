@@ -148,19 +148,16 @@ void draw() {
   } else {
     stopButtonHoverOver = appColorForeground; // See SetUp;
   }
+  fill(stopButtonHoverOver);
+  noStroke(); //Colour
   triangle(playButton1X, playButton1Y, playButton2X, playButton2Y, playButton3X, playButton3Y);
   fill(255); //noFill();
   stroke(1); //Reset default
-  noStroke();
 } //End draw
 //
 void mousePressed() {
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    if ( song[currentSong].isPlaying() ) {
-      song[currentSong].pause(); //single tap
-    } else {
-      song[currentSong].rewind(); //double tap
-    }
+    song[currentSong].loop(0); //Simple Play, double tap possible
   }
 } //End mousePressed
 //
