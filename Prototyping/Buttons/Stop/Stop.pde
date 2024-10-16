@@ -18,8 +18,8 @@ float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
 //
 color purple=#DB05FF, yellow=#FAFF00, white=#FFFFFF, black=#000000, orange=#C61429, blue=#03CCFC, lightblue=#17D18E;
-color dayForeground=purple, dayHoverover=blue, dayBackground=white;
-color darkForeground=purple, darkHoverover=orange, darkBackground=black;
+color dayForeground=lightblue, dayHoverover=blue, dayBackground=white;
+color darkForeground=yellow, darkHoverover=orange, darkBackground=black;
 color nightForeground=lightblue, nightHoverover=yellow, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
@@ -113,12 +113,12 @@ void setup()
   //rect( X, Y, Width, Height );
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
   //
-  if ( hour()<=7 || hour ()>=17 ) {
+  if ( hour()<=7 || hour ()>=17) {
     //Night Mode
     appColorForeground = nightForeground;
     appColorHoverover = nightHoverover;
     appColorBackground = nightBackground;
-  } else if ( colorNightMode= false && hour()>7 || hour ()<17 ) {
+  } else if ( colorNightMode==false && ( hour()>7 || hour()<17 ) ) {
     //Day Mode
     appColorForeground = dayForeground;
     appColorHoverover = dayHoverover;
