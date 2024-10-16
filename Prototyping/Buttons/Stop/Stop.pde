@@ -113,7 +113,7 @@ void setup()
   //rect( X, Y, Width, Height );
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
   //
-  if ( hour()<=7 || hour ()>=17) {
+  if ( hour()<=7 || hour ()>=17)  {
     //Night Mode
     appColorForeground = nightForeground;
     appColorHoverover = nightHoverover;
