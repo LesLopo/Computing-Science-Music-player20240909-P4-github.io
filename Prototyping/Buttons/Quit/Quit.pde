@@ -69,7 +69,7 @@ void setup()
   stopX = musicButtonSquareX + musicButtonSquareX*1/4;
   stopY = musicButtonSquareY + musicButtonSquareY*2/5;
   println( stopX, stopY, stopWidth, stopHeight );
-  quitThicknessLine = musicButtonSquareWidth / musicButtonSquareWidth + musicButtonSquareX1/4*1/4;
+  quitThicknessLine = musicButtonSquareWidth / musicButtonSquareWidth + musicButtonSquareX*1/4*1/4;
   quitButtonX1 = stopX;
   quitButtonY1 = stopY;
   quitButtonX2 = stopX+stopWidth;
