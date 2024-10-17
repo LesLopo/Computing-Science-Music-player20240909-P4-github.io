@@ -16,6 +16,7 @@ int appWidth, appHeight;
 float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musicButtonDIV_Height=0.0;
 float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
+float quitThicknessLine, quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2;
 //
 color purple=#DB05FF, yellow=#FAFF00, white=#FFFFFF, black=#000000, orange=#C61429, blue=#03CCFC, lightblue=#17D18E;
 color dayForeground=lightblue, dayHoverover=blue, dayBackground=white;
@@ -68,6 +69,17 @@ void setup()
   stopX = musicButtonSquareX + musicButtonSquareX*1/4;
   stopY = musicButtonSquareY + musicButtonSquareY*2/5;
   println( stopX, stopY, stopWidth, stopHeight );
+  quitThicknessLine = musicButtonSquareWidth / musicButtonSquareWidth + musicButtonSquareX1/4*1/4;
+  quitButtonX1 = stopX;
+  quitButtonY1 = stopY;
+  quitButtonX2 = stopX+stopWidth;
+  quitButtonY2 = stopY+stopHeight;
+  /*
+  quitButtonX3 = ;
+  quitButtonY4 = ;
+  quitButtonX4 = ;
+  quitButtonY4 = ;
+  */
   //
   /* Music Button Square Formulae for IF Statement Above
    // Use Paper Folding and Case Study
@@ -141,10 +153,12 @@ void draw() {
     stopButtonHoverOver = appColorForeground; // See SetUp;
   }
   fill(stopButtonHoverOver);
-  noStroke(); //Colour
-  rect( stopX, stopY, stopWidth, stopHeight );
+  //noStroke(); //Colour
+  strokeWeight(quitThicknessLine);
+  line( quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2 ); 
+  //line( quitButtonX3, quitButtonY4, quitButtonX4, quitButtonY4 );
   fill(255); //noFill();
-  stroke(1); //Reset default
+  //stroke(1); //Reset default
 } //End draw
 //
 void mousePressed() {
