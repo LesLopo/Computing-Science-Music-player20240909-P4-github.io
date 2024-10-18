@@ -17,13 +17,14 @@ float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musi
 float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
 float quitThicknessLine, quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2;
+float quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4;
 //
 color purple=#DB05FF, yellow=#FAFF00, white=#FFFFFF, black=#000000, orange=#C61429, blue=#03CCFC, lightblue=#17D18E;
 color dayForeground=lightblue, dayHoverover=blue, dayBackground=white;
 color darkForeground=yellow, darkHoverover=orange, darkBackground=black;
 color nightForeground=lightblue, nightHoverover=yellow, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
-color stopButtonHoverOver;
+color stopButtonHoverOver, quitButtonLineColour;
 //
 Boolean colorNightMode=true;
 //
@@ -74,12 +75,10 @@ void setup()
   quitButtonY1 = stopY;
   quitButtonX2 = stopX+stopWidth;
   quitButtonY2 = stopY+stopHeight;
-  /*
-  quitButtonX3 = ;
-  quitButtonY4 = ;
-  quitButtonX4 = ;
-  quitButtonY4 = ;
-  */
+  quitButtonX3 = quitButtonX2;
+  quitButtonY3 = quitButtonY1;
+  quitButtonX4 = quitButtonX1;
+  quitButtonY4 = quitButtonY2;
   //
   /* Music Button Square Formulae for IF Statement Above
    // Use Paper Folding and Case Study
@@ -149,16 +148,19 @@ void draw() {
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
     stopButtonHoverOver = appColorHoverover; // See SetUp;
+    quitButtonLineColour = appColorHoverover;
   } else {
     stopButtonHoverOver = appColorForeground; // See SetUp;
+    quitButtonLineColour = appColorForeground;
   }
   fill(stopButtonHoverOver);
   //noStroke(); //Colour
+  stroke(quitButtonLineColour);
   strokeWeight(quitThicknessLine);
   line( quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2 ); 
-  //line( quitButtonX3, quitButtonY4, quitButtonX4, quitButtonY4 );
+  line( quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4 );
   fill(255); //noFill();
-  //stroke(1); //Reset default
+  stroke(1); //Reset default
 } //End draw
 //
 void mousePressed() {
