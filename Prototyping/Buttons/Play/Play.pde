@@ -132,7 +132,7 @@ void setup()
     appColorHoverover = dayHoverover;
     appColorBackground = dayBackground;
   } else {
-    //Dark Mode 
+    //Dark Mode
     appColorForeground = darkForeground;
     appColorHoverover = darkHoverover;
     appColorBackground = darkBackground;
@@ -163,7 +163,7 @@ void mousePressed() {
 //
 void keyPressed() {
   //if ( key=='P' || key=='p' ) song[currentSong].loop(); //Simple Play, no double tap possible
-  //if ( key=='P' || key=='p' ) song[currentSong].play(); //Simple Play, no double tap possible
+  if ( key=='P' || key=='p' ) song[currentSong].play(); //Simple Play, no double tap possible
   //if ( key=='s' || key=='S' ) song[currentSong].pause(); //Simple Play, no double tap possible
   if ( key=='S' | key=='s' ) {
     if ( song[currentSong].isPlaying() ) {
@@ -172,6 +172,31 @@ void keyPressed() {
       song[currentSong].rewind(); //double tap
     }
   }
+  if ( key=='L' || key=='l' ) song[currentSong].loop(1); // Loop ONCE: PLays, then again, then stops & rewinds
+  if ( key=='K' || key=='k' ) song[currentSong].loop(); // Loop  Infinitely //Parameter: BLANK or -1
+  if ( key=='F' || key=='f' ) song[currentSong].skip( 10*1000 ); // Fast Forward, Rewind, & Play Again //Parameter MILISECONDS
+  if ( key=='R' || key=='r' ) song[currentSong].skip( -10*1000 ); // Fast Reverse
+  if ( key=='M' || key=='m' ) { // MUTE
+    //
+    if ( song[currentSong].isMuted()  ) {
+      song[currentSong].unmute();
+    } else {
+      song[currentSong].mute();
+    }
+  }
+  if ( key=='O' || key=='o' ) { // Pause
+    //
+    if ( song[currentSong].isPlaying() ) {
+     song[currentSong].pause();
+    } else {
+      song[currentSong].play();
+    }
+  }
+  //if ( key==CODED || key=='ESC' ) ; // QUIT
+  //if ( key=='' || key=='' ) ; // NEXT
+  //if ( key=='' || key=='' ) ; // Previous
+  //if ( key=='' || key=='' ) ; // Shuffle - PLAY (Random)
+  //if ( key=='' || key=='' ) ; // Play-Pause-STOP
 } //End KeyPressed
 //
 // End Main Program
