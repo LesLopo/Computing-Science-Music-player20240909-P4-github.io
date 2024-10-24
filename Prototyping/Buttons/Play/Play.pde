@@ -187,14 +187,40 @@ void keyPressed() {
   if ( key=='O' || key=='o' ) { // Pause
     //
     if ( song[currentSong].isPlaying() ) {
-     song[currentSong].pause();
+      song[currentSong].pause();
     } else {
       song[currentSong].play();
     }
   }
-  //if ( key==CODED || key=='ESC' ) ; // QUIT
-  //if ( key=='' || key=='' ) ; // NEXT
-  //if ( key=='' || key=='' ) ; // Previous
+  if ( key==CODED || key==ESC ) exit(); // QUIT //UP
+  if ( key=='Q' || key=='q' ) exit(); // QUIT
+  //
+  if ( key=='N' || key=='n' ) { // NEXT //See .txt for starter hint
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      //
+       if ( currentSong==3) {
+      currentSong = 0;
+       } else {
+         currentSong++;
+       }
+      println("The current song is", currentSong);
+      song[currentSong].play();
+    } else {
+      //
+      println("The current song is", currentSong);
+      song[currentSong].rewind();
+      //
+       if ( currentSong==3) {
+         currentSong = 0;
+       } else {
+         currentSong++;
+       }
+      println("The current song is", currentSong);
+      //song[currentSong].play();
+    }
+  }
   //if ( key=='' || key=='' ) ; // Shuffle - PLAY (Random)
   //if ( key=='' || key=='' ) ; // Play-Pause-STOP
 } //End KeyPressed
