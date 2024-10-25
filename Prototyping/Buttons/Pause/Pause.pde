@@ -18,9 +18,9 @@ float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
 //
 color purple=#DB05FF, yellow=#FAFF00, white=#FFFFFF, black=#000000, orange=#C61429, blue=#03CCFC, lightblue=#17D18E;
-color dayForeground=lightblue, dayHoverover=blue, dayBackground=white;
-color darkForeground=yellow, darkHoverover=orange, darkBackground=black;
-color nightForeground=lightblue, nightHoverover=yellow, nightBackground=black;
+color dayForeground=purple, dayHoverover=blue, dayBackground=white;
+color darkForeground=purple, darkHoverover=blue, darkBackground=black;
+color nightForeground=purple, nightHoverover=blue, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 //
@@ -124,7 +124,7 @@ void setup()
     appColorHoverover = dayHoverover;
     appColorBackground = dayBackground;
   } else {
-    //Dark Mode 
+    //Dark Mode
     appColorForeground = darkForeground;
     appColorHoverover = darkHoverover;
     appColorBackground = darkBackground;
@@ -163,9 +163,9 @@ void keyPressed() {
   //if ( key=='s' || key=='S' ) song[currentSong].pause(); //Simple Play, no double tap possible
   if ( key=='S' | key=='s' ) {
     if ( song[currentSong].isPlaying() ) {
-      song[currentSong].pause(); //single tap
+      song[currentSong].pause();
     } else {
-      song[currentSong].rewind(); //double tap
+      song[currentSong].play();
     }
   }
 } //End KeyPressed
