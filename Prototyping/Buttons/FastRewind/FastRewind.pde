@@ -13,18 +13,18 @@ int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZE
 //
 int appWidth, appHeight;
 //CAUTION: IF Statement Variable Population
-float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musicButtonDIV_Height=0.0;
-float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
-float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
+float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
+float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
+float stopX, stopY, stopWidth, stopHeight;
 //
-color purple=#DB05FF, yellow=#FAFF00, white=#FFFFFF, black=#000000, orange=#C61429, blue=#03CCFC, lightblue=#17D18E;
-color dayForeground=lightblue, dayHoverover=blue, dayBackground=white;
-color darkForeground=yellow, darkHoverover=orange, darkBackground=black;
-color nightForeground=lightblue, nightHoverover=yellow, nightBackground=black;
+color purple=#DB05FF, yellow=#E9FF00, blue=#037EFF, white=#FFFFFF, black=#000000, green=#00FF00;
+color dayForeground=purple, dayHoverover=blue, dayBackground=white;
+color darkForeground=purple, darkHoverover=yellow, darkBackground=black;
+color nightForeground=green, nightHoverover=yellow, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 //
-Boolean colorNightMode=true;
+Boolean colorDarkMode=true; //Preference: true or false //Future: Build Button for Dark Mode Preference
 //
 void setup()
 {
@@ -39,7 +39,7 @@ void setup()
   //Use if statement to change, introduce ternary operator
   //
   //Population (Variables)
-  //Work out a case Study:
+  //Work out a case Study: shorter  side of DIV
   if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { // Landscape //error: square does not go in the middle
     // musicButtonWidth needs to change
     musicButtonSquareWidth = musicButtonDIV_Height ;
@@ -48,9 +48,6 @@ void setup()
     float padding2 = padding1*1/2; ////working out value needed, with formulae
     musicButtonSquareX = musicButtonDIV_X + padding2 ; //note: minus moves it the wrong way, difficult to see
     musicButtonSquareY = musicButtonDIV_Y;
-    println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
-    println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-    println ( padding1 );
   } else { //Portrait
     // musicButtonHeight needs to change
     musicButtonSquareWidth = musicButtonDIV_Width ;
@@ -59,25 +56,12 @@ void setup()
     float padding2 = padding1*1/2; ////working out value needed, with formulae
     musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
     musicButtonSquareY = musicButtonDIV_Y + padding2;
-    println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
-    println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-    println ( padding1 );
   }
-  stopWidth = musicButtonSquareWidth*3/5;
-  stopHeight = stopWidth;
-  stopX = musicButtonSquareX + musicButtonSquareX*1/4;
-  stopY = musicButtonSquareY + musicButtonSquareY*2/5;
-  println( stopX, stopY, stopWidth, stopHeight );
-  //
-  /* Music Button Square Formulae for IF Statement Above
-   // Use Paper Folding and Case Study
-   float padding = 1.0/5.0;
-   float stopButtonSize = musicButtonSquareWidth*3/5;
-   stopWidth = stopButtonSize;
-   stopHeight = stopButtonSize;
-   stopX = musicButtonSquareX + musicButtonSquareX*padding;
-   stopY = musicButtonSquareY + musicButtonSquareY*padding;
-   */
+  //See Case Studies and paper folding
+  stopWidth = musicButtonSquareWidth*1/2;
+  stopHeight = musicButtonSquareHeight*1/2;
+  stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
+  stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -91,7 +75,7 @@ void setup()
   //
   //Add Reading into Array
   String directory = "../../../" + musicPathway;
-  String file = directory + cycles + mp3FileName;
+  String file = directory + beatYourCompetition + mp3FileName;
   song[currentSong] = minim.loadFile( file );
   file = directory + beatYourCompetition + mp3FileName;
   song[currentSong+=1] = minim.loadFile( file );
@@ -113,61 +97,79 @@ void setup()
   //rect( X, Y, Width, Height );
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
   //
-  if ( hour()<=7 || hour ()>=17 ) {
-    //Night Mode
+  println(colorDarkMode);
+  if ( colorDarkMode==false && ( hour()<=7 || hour()>=17 ) ) { //Testing: change 5PM to earlier time, shortcut colorNightMode==true
+    //Night
     appColorForeground = nightForeground;
     appColorHoverover = nightHoverover;
     appColorBackground = nightBackground;
-  } else if ( colorNightMode==false && ( hour()>7 || hour ()>17 ) ) {
-    //Day Mode
+    println("here1");
+  } else if ( colorDarkMode==false && ( hour()>7 || hour()<17 ) ) {
+    //Day
     appColorForeground = dayForeground;
     appColorHoverover = dayHoverover;
     appColorBackground = dayBackground;
+    println("here2");
   } else {
     //Dark Mode 
     appColorForeground = darkForeground;
     appColorHoverover = darkHoverover;
     appColorBackground = darkBackground;
+    println("here3");
   }
   //
 } //End setup
 //
 void draw() {
-  background(0); // Gray Scale: 0-255
+  background(appColorBackground); //Gray Scale: 0-255, full BLUE Colour
+  //
+  //fill() is default
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
+  //
+  /* Note: 3 types of colour, in pairs for hoverover
+   - Day, Foreground: #DB05FF | Hoverover: #037EFF | Background: #FFFFFF
+   - Dark, Foreground: #DB05FF | Hoverover: #E9FF00 | Background: #000000
+   - Night, no blue, Foreground: #00FF00 | Hoverover: #E9FF00 | Background: #000000
+   - Dark Mode is for all the time, how bright the screen is and eye strain
+   - API: when does sunrise, when does sunset, is the system time within those hours
+   - Night mode is for all the time or just
+   - Note: preferences are hardcoded here but can be choices in CS20
+   */
+  //if ( day ) {} else if ( dark ) {} else {}
+  //
+  //Hoverover IF - Used in all other buttons too
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    stopButtonHoverOver = appColorHoverover; // See SetUp;
+    stopButtonHoverOver = appColorHoverover; // See SetUp: Single Line IFs for Day, Dark, and Night Booleans
   } else {
-    stopButtonHoverOver = appColorForeground; // See SetUp;
+    stopButtonHoverOver = appColorForeground; // See SetUp: Single Line IFs for Day, Dark, and Night Booleans
   }
   fill(stopButtonHoverOver);
   noStroke(); //Colour
-  rect( stopX, stopY, stopWidth, stopHeight );
-  fill(255); //noFill();
+  //
+  rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
+  fill(255); //noFill(); //White in Gray Scale
   stroke(1); //Reset default
+  //
+  //Music Buttons Interactions: cascading IFs can become AND Statements
+  //Note: keypressed must have click on screen
+  //
 } //End draw
 //
 void mousePressed() {
+  //Boolean for Click
+  //if() {} else {}
+  //
+  /* STOP Button Mouse Press, after Hoverover
+   Must have Hoverover to ensure mouse will activate, visual confirmation of algorithm
+   */
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    if ( song[currentSong].isPlaying() ) {
-      song[currentSong].pause(); //single tap
-    } else {
-      song[currentSong].rewind(); //double tap
-    }
+    //What key board should cut do you want here?
   }
+  //
 } //End mousePressed
 //
 void keyPressed() {
-  //if ( key=='P' || key=='p' ) song[currentSong].loop(); //Simple Play, no double tap possible
-  //if ( key=='P' || key=='p' ) song[currentSong].play(); //Simple Play, no double tap possible
-  //if ( key=='s' || key=='S' ) song[currentSong].pause(); //Simple Play, no double tap possible
-  if ( key=='S' | key=='s' ) {
-    if ( song[currentSong].isPlaying() ) {
-      song[currentSong].pause(); //single tap
-    } else {
-      song[currentSong].rewind(); //double tap
-    }
-  }
-} //End KeyPressed
+ if ( key=='R' || key=='r' ) song[currentSong].skip( -10*1000 );
+} //End keyPressed
 //
 // End Main Program
