@@ -7,12 +7,14 @@ import ddf.minim.ugens.*;
 //
 //Global Variables
 Minim minim;
-int numberOfSongs = 8; //Able to Autodetect based on Pathway
+int numberOfSongs = 4; //Able to Autodetect based on Pathway
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
 int appWidth, appHeight;
 float imageDIV_X, imageDIV_Y, imageDIV_Width, imageDIV_Height;
+float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
+PImage picBackground;
 //
 void setup()
 {
@@ -27,12 +29,16 @@ void setup()
   //Use if statement to change, introduce ternary operator
   //
   //Population (Variables)
-  //Work out a case Study: 
+  backgroundImageX = appWidth*0;
+  backgroundImageY = appHeight*0;
+  backgroundImageWidth = appWidth-1;
+  backgroundImageHeight = appHeight-1;
+  picBackground = loadImage("../../../Images/ruslxdteccmnsnklxg3l.jpg");
+  //Work out a case Study:
   if ( imageDIV_Width >= imageDIV_Height ) { // Landscape //error: square does not go in the middle
-  
-   } else { //Portrait
-   println ( );
-   }
+  } else { //Portrait
+    println ( );
+  }
   //float padding = 1.0/4.0;
   //float stopButtonSize = 1.0-(1.0/4.0);
   /*
@@ -69,6 +75,10 @@ void setup()
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
   //rect( X, Y, Width, Height );
   rect( imageDIV_X, imageDIV_Y, imageDIV_Width, imageDIV_Height );
+  rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  //
+  //Draw Image One Time, for testing
+  image( picBackground, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
 } //End setup
 //
 void draw() {
@@ -95,13 +105,13 @@ void keyPressed() {
     }
   }
   if ( key=='O' || key=='o' ) { // Pause
-   if ( song[currentSong].isPlaying() ) {
+    if ( song[currentSong].isPlaying() ) {
       song[currentSong].pause();
     } else {
       song[currentSong].play();
     }
   }
-  if ( key==CODED || key==ESC ) exit(); // QUIT //UP
+  if ( key==CODED || keyCode==ESC ) exit(); // QUIT //UP
   if ( key=='Q' || key=='q' ) exit(); // QUIT
   //
   if ( key=='N' || key=='n' ) { // NEXT //See .txt for starter hint
@@ -109,23 +119,23 @@ void keyPressed() {
       song[currentSong].pause();
       song[currentSong].rewind();
       //
-       if ( currentSong==numberOfSongs+1 ) {
-      currentSong = 0;
-       } else {
-         currentSong++;
-       }
-      println("The current song is", currentSong);
+      if ( currentSong==numberOfSongs-1 ) {
+        currentSong = 0;
+      } else {
+        currentSong++;
+      }
       song[currentSong].play();
     } else {
       //
-      println("The current song is", currentSong);
       song[currentSong].rewind();
       //
-      if ( currentSong==numberOfSongs+1 ) {
-         currentSong = 0;
+      if ( currentSong==numberOfSongs-1 ) {
+        currentSong = 0;
       } else {
-         currentSong++;
+        currentSong++;
       }
+      // NEXT will not automatically play the song
+      //song[currentSong].play();
     }
   }
 } //End keyPressed
