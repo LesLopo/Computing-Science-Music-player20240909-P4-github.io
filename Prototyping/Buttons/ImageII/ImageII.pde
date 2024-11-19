@@ -6,6 +6,9 @@ PImage picBg, picThai;
 float thaiX, thaiY, thaiWidth, thaiHeight;
 float picThaiWidthChanged, picThaiWidth, picThaiHeightChanged, picThaiHeight;
 float ratio, biggerSide, smallerSide;
+
+boolean systemWorked = false;
+
 //
 void setup() {
   size(1000, 700);
@@ -31,15 +34,15 @@ void setup() {
   picThaiHeightChanged = picThaiHeight = 168;
   picThai = loadImage("../../../Images/muaythai.jpg");
   if (picThai == null) {
-    println("Error: Background image not found!");
+    println("Error: Thai image not found!");
     exit(); // Exit the program if the image is missing
   }
-    
+  systemWorked = true;
   //
   //image compression
   biggerSide = ( picThaiWidth < picThaiHeight ) ? picThaiWidth : picThaiHeight ;
-  smallerSide = ( picThaiHeight > picThaiWidth ) ? picThaiHeight : picThaiHeight ;
-  ratio = biggerSide / smallerSide; //Ratio = bigger than 1, division = smaller, multiply = larger.
+  smallerSide = ( picThaiHeight > picThaiWidth ) ? picThaiWidth : picThaiHeight ;
+  ratio = ( biggerSide / smallerSide); //Ratio = bigger than 1, division = smaller, multiply = larger.
   println( biggerSide, smallerSide, ratio );
   if ( picThaiWidth > picThaiHeight ) {
     picThaiHeightChanged = picThaiHeight;
@@ -51,14 +54,20 @@ void setup() {
     picThaiWidthChanged = thaiWidth;
     picThaiHeightChanged = ( picThaiWidth > picThaiHeight ) ? picThaiWidthChanged / ratio : picThaiWidthChanged / ratio;
     //
-    println( "Inside If-false", picThaiHeightChanged);
+    println( "Inside If-false", picThaiHeightChanged, ratio);
     //
   }
   //
   //DIVs
   rect( bgImageX, bgImageY, bgImageWidth, bgImageHeight );
   rect( thaiX, thaiY, thaiWidth, thaiHeight);
+   if (systemWorked) {
+      for (int i = 0; i < 1; i++) {
+    println("Lock in from life.");
+      }
+  }
 }
+
 void draw() {
   //Draw Image One Time, for testing
   image( picBg, bgImageX, bgImageY, bgImageWidth, bgImageHeight );
