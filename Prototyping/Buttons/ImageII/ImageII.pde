@@ -63,7 +63,7 @@ void setup() {
   rect( thaiX, thaiY, thaiWidth, thaiHeight);
    if (systemWorked) {
       for (int i = 0; i < 1; i++) {
-    println("Lock in from life.");
+    println("California LOVEEEEEEEEEEEEEe.");
       }
   }
 }
