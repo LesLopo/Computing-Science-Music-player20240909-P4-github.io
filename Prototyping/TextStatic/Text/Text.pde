@@ -1,59 +1,82 @@
 /* Static Text
--Text Aspect Ratio
-*/
-//Global Variables
+ - Testing for Aspect Ratio
+ -
+ */
+// Global Variables
 int appWidth, appHeight;
-//
 float titleX, titleY, titleWidth, titleHeight;
-float coolioX, coolioY, coolioWidth, coolioHeight;
-float lolzX, lolzY, lolzWidth, lolzHeight;
-PFont titleFont, lolzFont, coolioFont;
-color red=#AA0913, black=#000000, resetDefaultInk=black;
+float coolioLX, coolioLY, coolioLWidth, coolioLHeight;
+float lolZX, lolZY, lolZWidth, lolZHeight;
+PFont titleFont, lolZFont, coolioLFont;
+color ink, bx1, bx2, bx3, red=#900303, blue=#040390, green=#039054, white=#FFFFFF, black=#000000, resetDefaultInk=white;
 int size;
-String title = "Lock in";
-String lolz = "k";
-String coolio = "huh";
+String title = "First Light", lolZ="Like That", coolioL="Bane";
 //
-//Display
-size(500, 700);
+void setup()
+{
+size( 500, 700 );
 appWidth = width;
 appHeight = height;
 //
-String[] fontList = PFont.list(); // List every fonts available
-printArray(fontList); //Ravie, Rage Italic, Rockwell
-titleFont = createFont("Ravie", 55);
-lolzFont = createFont("Rage Italic", 55);
-coolioFont = createFont("Rockwell", 55);
-//POPULATION
+//String[] fontList = PFont.list(); 
+//printArray(fontList);
+titleFont = createFont("Harrington", 55); //Verify the font exists in Processing.Java
+lolZFont = createFont("Lucida Handwriting Italic", 55);
+coolioLFont = createFont("Yu Gothic UI Semilight", 55);
+//
 titleX = appWidth*1/10;
 titleY = appHeight*1/10;
 titleWidth = appWidth*8/10;
 titleHeight = appHeight*1/10;
 //
-coolioX = titleX;
-coolioY = appHeight*4.5/10;
-coolioWidth = titleWidth;
-coolioHeight = titleHeight;
+coolioLX = titleX;
+coolioLY = appHeight*4.5/10; 
+coolioLWidth = titleWidth;
+coolioLHeight = titleHeight;
 //
-lolzX = titleX;
-lolzY = appHeight*8/10;
-lolzWidth = titleWidth;
-lolzHeight = titleHeight;
+lolZX = titleX; 
+lolZY = appHeight*8/10;
+lolZWidth = titleWidth; 
+lolZHeight = titleHeight;
+//
+bx1 = color(random(255), random(255), random(255));
+bx2 = color(random(255), random(255), random(255));
+bx3 = color(random(255), random(255), random(255));
 //
 //DIVs
-rect(titleX, titleY, titleWidth, titleHeight);
-rect( coolioX, coolioY, coolioWidth, coolioHeight);
-rect(lolzX, lolzY, lolzWidth, lolzHeight);
+fill(bx1);
+rect( titleX, titleY, titleWidth, titleHeight ); 
+fill(0);
 //
-//Drawing text
-fill(red); 
+fill(bx2);
+rect( coolioLX, coolioLY, coolioLWidth, coolioLHeight ); 
+fill(0);
+//
+fill(bx3);
+rect( lolZX, lolZY, lolZWidth, lolZHeight ); 
+fill(0);
+} //End setup
+//
+void draw()
+{
+ink = black; 
+fill(ink);
 textAlign(CENTER, CENTER);
-size = 12;
-textFont(titleFont, size);
-text(title, titleX, titleY, titleHeight, titleWidth);
+size = 60; 
+textFont( titleFont, size ); 
+text( title, titleX, titleY, titleWidth, titleHeight );
+fill(ink);
+size = 49;
+textFont( lolZFont, size ); 
+text( lolZ, lolZX, lolZY, lolZWidth, lolZHeight );
+fill(ink);
+size = 60;
+textFont( coolioLFont, size ); 
+text( coolioL, coolioLX, coolioLY, coolioLWidth, coolioLHeight );
+} //End draw
 //
-textFont(lolzFont, size);
-text(lolz, lolzX, lolzY, lolzHeight, lolzWidth);
+void mousePressed() {} 
 //
-textFont(coolioFont, size);
-text(coolio, coolioX, coolioY, coolioHeight, coolioWidth);
+void keyPressed() {}
+//
+//End main
