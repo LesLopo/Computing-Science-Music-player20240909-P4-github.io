@@ -78,13 +78,13 @@ void draw()
 } //End draw
 //
 void mousePressed() {
-}
-//
-void keyPressed() {
   if ( randomColour == true ) {
     randomColour = false;
   } else {
     randomColour = true;
   }
+}
+//
+void keyPressed() {
 }//
 //END MAIN
