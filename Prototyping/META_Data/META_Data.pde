@@ -7,12 +7,12 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 // Global Variables
+Minim minim;
 int appWidth, appHeight;
 float metaDataX1, metaDataY1, metaDataWidth1, metaDataHeight1;
 float metaDataX2, metaDataY2, metaDataWidth2, metaDataHeight2;
 float metaDataX3, metaDataY3, metaDataWidth3, metaDataHeight3;
-
-Minim minim;
+//
 int numberOfSongs = 3;
 AudioPlayer[] playList = new AudioPlayer[numberOfSongs];
 AudioMetaData[] playListTitleData = new AudioMetaData[numberOfSongs];
